@@ -33,8 +33,11 @@ public class TaoActivity extends Activity {
         btn1 = (Button) findViewById(R.id.button);
         btn2 = (Button) findViewById(R.id.button2);
         webView = (WebView) findViewById(R.id.webview);
+        //下面这句可以让Android端调用html的方法
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("file:///android_asset/web.html");
+        //这一句，可以让html界面调用Android端的方法
+        webView.addJavascriptInterface(TaoActivity.this,"android");
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +49,6 @@ public class TaoActivity extends Activity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                webView.loadUrl("javascript:javacalljswith(" + "'http://blog.csdn.net/Leejizhou'" + ")");
                 webView.loadUrl("javascript:javacalljswith(" + "'禽兽，为什么还是这个女孩！你就不能放过她？'" + ")");
             }
         });
@@ -64,13 +66,15 @@ public class TaoActivity extends Activity {
     }
 
     @JavascriptInterface
-    public void startFunction(final String str) {
+    public void startFunction(final String text){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new AlertDialog.Builder(TaoActivity.this).setMessage(str).show();
+                new AlertDialog.Builder(TaoActivity.this).setMessage(text).show();
             }
         });
+
+
     }
 
 }
