@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JavascriptBridge.iml" filepath="$PROJECT_DIR$/JavascriptBridge.iml" />
+      <module fileurl="file://E:\work_space\JavascriptBridge\JavascriptBridge.iml" filepath="E:\work_space\JavascriptBridge\JavascriptBridge.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\work_space\JavascriptBridge\app\app.iml" filepath="E:\work_space\JavascriptBridge\app\app.iml" />
     </modules>
   </component>
 </project>

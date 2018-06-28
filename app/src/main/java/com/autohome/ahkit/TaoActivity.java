@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -52,8 +53,20 @@ public class TaoActivity extends Activity {
                 webView.loadUrl("javascript:javacalljswith(" + "'禽兽，为什么还是这个女孩！你就不能放过她？'" + ")");
             }
         });
+
+        //由于通过当你使用btn来执行js操作的时候，你的网页是已经加载完毕了的，
+        // 但是如果你的打开网页直接又去执行js操作的时候可能因为异步的原因而导致callJS()没有反应
+        //解决办法如下新建WebViewClient，当网页加载完毕了之后再去执行就可以了
+        webView.setWebViewClient(new MyWebViewClient());
+
     }
 
+    public class MyWebViewClient extends WebViewClient{
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            webView.loadUrl("javascript:javacalljs()");//这个是自动出发的，而btn是手动触发的
+        }
+    }
 
     @JavascriptInterface
     public void startFunction() {
